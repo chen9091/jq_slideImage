@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="jq_slideImage.js" type="text/javascript" charset="utf-8"></script>
+		
+	</head>
+	<body>
+		<div class="demo1" id="slideImageWrap">
+	        
+	    </div>
+	    <button id="reset-one">
+	        重置test1
+	    </button>
+	
+	    <div class="demo2" id="slideImageWrap2">
+	
+	    </div>
+	    <button id="reset-two">
+	        重置test2
+	    </button>
+    <script>
+        var mySlideImage = new SlideImageVerify('#slideImageWrap',{
+            slideImage:['image/0034034888570098_b.jpg','image/1155116361608498_b.jpg','image/b6d5128741fee79a077f9e72a36797cc.jpg'],
+            slideAreaNum:1,
+            refreshSlide:true,
+            getSuccessState:function (res) {
+                console.log(res);
+            }
+        })
+        $("#reset-one").on('click',function () {
+            mySlideImage.resetSlide();
+        })
+        window.onresize = function (ev) {
+            mySlideImage.resizeSlide();
+        }
+        
+        
+        var mySlideImage2 = new SlideImageVerify('#slideImageWrap2',{
+            slideImage:'image/d98ad358f746d8936c7e24dad895f52b.jpg',
+            slideAreaNum:20,
+            refreshSlide:false,
+            getSuccessState:function (res) {
+                console.log(res);
+            }
+        })
+        
+        $("#reset-two").on('click',function () {
+            mySlideImage2.resetSlide();
+        })
+        
+    </script>
+	</body>
+</html>
