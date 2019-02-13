@@ -66,15 +66,15 @@
     }
     //获取元素的left值
     function getEleCssLeft($ele) {
-        return $ele.css('left');
+        return parseInt($ele.css('left'));
     }
     
     //判断元素高度宽度为零
     function getEleCssWidth($ele){
-    	return $ele.width();
+    	return parseInt($ele.width());
     }
     function getEleCssHeight($ele){
-    	return $ele.height();
+    	return parseInt($ele.height());
     }
     
     var SlideImageVerify = function (ele,opt) {
@@ -118,7 +118,7 @@
             this.initCanvas();
             this.initMouse();
             this._touchstart();
-            // this._touchmove();
+//          this._touchmove();
             this._touchend();
             this.refreshSlide();
         },
@@ -152,6 +152,12 @@
             this.slideFixCanvas[0].height = this.$eleHeight;
             this.$ele.find('.slideCanbox').css('height',this.$eleHeight);
             this.slideImage = document.createElement('img');
+            if(isArray(this.settings.slideImage)){
+                this.slideImageSrc = getRandomImg(this.settings.slideImage);
+            }else{
+                this.slideImageSrc = this.settings.slideImage;
+            }
+            this.slideImage.crossOrigin = '';
         },
         initCanvas:function () {
             this.x = getRandomNumber(60,this.$eleWidth - 60);
@@ -159,11 +165,7 @@
             this.slideCan_ctx = this.slideCanvas[0].getContext('2d');
             this.slideFixCan_ctx = this.slideFixCanvas[0].getContext('2d');
             var _this = this;
-            if(isArray(this.settings.slideImage)){
-                this.slideImage.src = getRandomImg(this.settings.slideImage);
-            }else{
-                this.slideImage.src = this.settings.slideImage;
-            }
+            _this.slideImage.src = this.slideImageSrc;
             _this.slideImage.onload = function(){
                 _this.slideFixCan_ctx.drawImage(_this.slideImage,0, 0, _this.$ele.width() || 300, _this.$ele.height() || 160);
                 _this.slideCan_ctx.drawImage(_this.slideImage,0, 0,_this.$eleWidth, _this.$eleHeight);
@@ -358,6 +360,11 @@
                 if(_this.slideState){
                     console.log('验证已经成功，刷新无效');
                 }else{
+                	if(isArray(_this.settings.slideImage)){
+		                _this.slideImageSrc = getRandomImg(_this.settings.slideImage);
+		            }else{
+		                _this.slideImageSrc = _this.settings.slideImage;
+		            }
                     _this.resizeSlide();
                 }
             })
