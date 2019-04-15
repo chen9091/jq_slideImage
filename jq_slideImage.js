@@ -336,6 +336,8 @@
         resetSlide:function(){
             var _this = this;
             _this.slideState = false;
+            _this.disTouchX = 0;
+            _this.disLf = 0;
             _this.$slideDragBtn.animate({
                 'left':0,
             },50)
@@ -349,6 +351,8 @@
         },
         resizeSlide:function () {
             var _this = this;
+//          _this.disTouchX = 0;
+            _this.resetSlide();
             _this.$slideRefBtn.show();
             _this.slideCan_ctx.clearRect(0,0,_this.$eleWidth,_this.$eleHeight);
             _this.slideFixCan_ctx.clearRect(0,0,_this.$eleWidth,_this.$eleHeight);
