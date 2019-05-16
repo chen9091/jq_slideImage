@@ -208,11 +208,12 @@
                 _this.$slideDragBox.addClass('slide-active-box');
                 var positionDiv = $(this).offset();
                 var distenceX = e.pageX - positionDiv.left;
+	    	var disPageX = e.pageX;
                 $(document).mousemove(function (e) {
                     if(!ifThisMousedown){
                         return false;
                     }
-                    var x = e.pageX - distenceX;
+                    var x = e.pageX - disPageX;
                     if(x<0){
                         x=0;
                     }else if(x > _this.$ele.width() - 57){
