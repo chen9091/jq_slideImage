@@ -348,6 +348,7 @@
             _this.$slideProgress.animate({
                 'width':0,
             },50)
+	    _this.$slideRefBtn.show();
             _this.$slideDragBox.removeClass('slide-fail-box slide-active-box slide-success-box');
         },
         resizeSlide:function () {
