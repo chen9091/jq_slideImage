@@ -170,7 +170,7 @@
         	_this.slideImage.onload = function(){
             	_this.ifOnload = true;
                 _this.slideFixCan_ctx.drawImage(_this.slideImage,0, 0, _this.$ele.width() || 300, _this.$ele.height() || 160);
-                _this.slideCan_ctx.drawImage(_this.slideImage,0, 0,_this.$eleWidth, _this.$eleHeight);
+                _this.slideCan_ctx.drawImage(_this.slideImage,0, 0,_this.$ele.width() || 300, _this.$ele.height() || 160);
                 var h = _this.y - _this.r * 2 + 2;
                 var ImageData = _this.slideCan_ctx.getImageData(_this.x, h,60,60);
                 _this.slideCanvas[0].width = 60;
